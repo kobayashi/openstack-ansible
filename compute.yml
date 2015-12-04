@@ -1,0 +1,8 @@
+---
+- hosts: compute
+  remote_user: vagrant
+  sudo: True
+  roles:
+    - common
+    - nova-compute
+    - neutron-compute

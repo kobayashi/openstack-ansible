@@ -1,0 +1,54 @@
+controller_host: 
+network_host: 
+compute_host:
+storage_host:
+odl_controller:
+
+DEBUG: False
+VERBOSE: False
+NTP_SERVER_LOCAL: controller
+DB_HOST: controller
+MQ_BROKER: rabbitmq
+
+OPENSTACK_REPO: cloudarchive-liberty.list
+ADMIN_TOKEN: admin
+CEILOMETER_TOKEN: 
+RABBIT_PASS: guest
+KEYSTONE_DBPASS: keystone
+DEMO_PASS: demo
+ADMIN_PASS: admin
+GLANCE_DBPASS: glance_db_secret
+GLANCE_PASS: glance
+NOVA_DBPASS: nova
+NOVA_PASS: nova
+DASH_DBPASS: dash
+CINDER_DBPASS: cinder
+CINDER_PASS: cinder
+NEUTRON_DBPASS: neutron
+NEUTRON_PASS: netron
+NEUTRON_TYPE_DRIVERS: ['flat', 'gre', 'vxlan']
+NEUTRON_TENANT_NETWORK_TYPES: ['vxlan']
+#NEUTRON_MECHANISM_DRIVERS: ['opendaylight']
+NEUTRON_MECHANISM_DRIVERS: ['openvswitch']
+NEUTRON_TUNNEL_TYPES: ['vxlan']
+METADATA_SECRET: metadata_secret
+INSTANCE_TUNNELS_INTERFACE_IP_ADDRESS:
+INTERFACE_NAME:
+
+EXTERNAL_NETWORK_CIDR: 
+EXTERNAL_NETWORK_GATEWAY:
+FLOATING_IP_START:
+FLOATING_IP_END:
+
+build_in_image: http://cdn.download.cirros-cloud.net/0.3.3/cirros-0.3.3-x86_64-disk.img
+build_in_image_name: cirros-0.3.3-x86_64-disk.img
+
+physical_device:
+
+internal_nic: eth1
+internal_interface: "ansible_{{ internal_nic }}"
+internal_ip: "{{ hostvars[inventory_hostname][internal_interface]['ipv4']['address'] }}"
+
+odl_username: admin
+odl_password: admin
+odl_api_port: 8080

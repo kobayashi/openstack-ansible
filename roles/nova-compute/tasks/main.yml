@@ -1,0 +1,13 @@
+---
+- name: install nova-compute related packages
+  apt: name=nova-compute-kvm state=present force=yes
+
+- name: update nova-compute conf
+  template: src=nova-compute.conf dest=/etc/nova/nova.conf backup=yes
+  notify:
+    - restart nova-compute
+
+- meta: flush_handlers
+
+- name: remove nova sqlite db
+  shell: rm /var/lib/nova/nova.sqlite || touch nova.sqlite.removed
