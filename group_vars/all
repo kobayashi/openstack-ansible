@@ -3,6 +3,8 @@ network_host:
 compute_host:
 storage_host:
 odl_controller:
+network_int_host:
+compute_int_host:
 
 DEBUG: False
 VERBOSE: False
@@ -41,8 +43,8 @@ EXTERNAL_NETWORK_GATEWAY:
 FLOATING_IP_START:
 FLOATING_IP_END:
 
-build_in_image: http://cdn.download.cirros-cloud.net/0.3.3/cirros-0.3.3-x86_64-disk.img
-build_in_image_name: cirros-0.3.3-x86_64-disk.img
+build_in_image: http://cdn.download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
+build_in_image_name: cirros-0.3.4-x86_64-disk.img
 
 physical_device:
 
