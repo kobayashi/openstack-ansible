@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- hosts: server
+  user: vagrant
   sudo: True
   roles: 
     - { role: common }

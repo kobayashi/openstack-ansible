@@ -1,6 +1,6 @@
-controller_host: 172.16.254.15 
-network_host: 172.16.254.15
-compute_host: 172.16.254.15
+controller_host: 172.16.254.50
+network_host: 172.16.254.50
+compute_host: 172.16.254.50
 network_int_host: 192.168.33.10
 compute_int_host: 192.168.33.10
 
