@@ -13,6 +13,7 @@ MQ_BROKER: rabbitmq
 OPENSTACK_REPO: cloudarchive-liberty.list
 ADMIN_TOKEN: admin
 CEILOMETER_TOKEN: 
+RABBIT_USER: guest
 RABBIT_PASS: guest
 KEYSTONE_DBPASS: keystone
 DEMO_PASS: demo
