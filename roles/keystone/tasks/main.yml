@@ -1,10 +1,26 @@
 ---
 - name: install keystone packages
-  apt: name=keystone state=present force=yes
+  apt: name={{ item }} state=present force=yes 
+  with_items:
+    - keystone
+    - apache2
+    - libapache2-mod-wsgi
+    - memcached
+    - python-memcache
+
+- name: install openstack-client
+  apt: name=python-openstackclient state=present force=yes
 
 - name: update keystone conf
   template: src=keystone.conf dest=/etc/keystone/keystone.conf backup=yes
   notify: restart keystone
+
+- name: update apache2 conf
+  template: src=apache2.conf dest=/etc/apache2/apache2.conf backup=yes
+
+- name: create & link wsgi-keystone conf
+  template: src=wsgi-keystone.conf dest=/etc/apache2/sites-available/wsgi-keystone.conf backup=yes
+  shell: ln -s /etc/apache2/sites-available/wsgi-keystone.conf /etc/apache2/sites-enabled
 
 - name: delete sqlite database
   shell: rm /var/lib/keystone/keystone.db || echo sqllite database already removed
@@ -34,3 +50,14 @@
   with_items:
     - admin-openrc.sh
     - demo-openrc.sh
+
+- name: place service init script under /opt/
+  template: src=service_init dest=/opt/service_init mode=0744
+
+- name: set environment
+  shell: source /opt/admin-openrc.sh
+
+- name: register services
+  shell: /opt/service_init && touch service_init_complete || service_init_failed
+  args:
+    creates: service_init_complete

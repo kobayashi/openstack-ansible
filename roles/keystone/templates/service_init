@@ -1,0 +1,23 @@
+#glance
+openstack user create --domain default --password glance glance
+openstack role add --project service --user glance admin
+openstack service create --name glance --description "OpenStack Image service" image
+openstack endpoint create --region RegionOne image public http://{{ controller_host }}:9292
+openstack endpoint create --region RegionOne image internal http://{{ controller_host }}:9292
+openstack endpoint create --region RegionOne image admin http://{{ controller_host }}:9292
+
+#nova
+openstack user create --domain default --password nova nova
+openstack role add --project service --user nova admin
+openstack service create --name nova --description "OpenStack Compute" compute
+openstack endpoint create --region RegionOne compute public http://{{ controller_host }}:8774/v2/%\(tenant_id\)s
+openstack endpoint create --region RegionOne compute internal http://{{ controller_host }}:8774/v2/%\(tenant_id\)s
+openstack endpoint create --region RegionOne compute admin http://{{ controller_host }}:8774/v2/%\(tenant_id\)s
+
+#neutron
+openstack user create --domain default --password neutron neutron
+openstack role add --project service --user neutron admin
+openstack service create --name neutron --description "OpenStack Networking" network
+openstack endpoint create --region RegionOne network public http://{{ controller_host }}:9696
+openstack endpoint create --region RegionOne network internal http://{{ controller_host }}:9696
+openstack endpoint create --region RegionOne network admin http://{{ controller_host }}:9696
