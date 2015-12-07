@@ -18,9 +18,13 @@
 - name: update apache2 conf
   template: src=apache2.conf dest=/etc/apache2/apache2.conf backup=yes
 
-- name: create & link wsgi-keystone conf
-  template: src=wsgi-keystone.conf dest=/etc/apache2/sites-available/wsgi-keystone.conf backup=yes
-  shell: ln -s /etc/apache2/sites-available/wsgi-keystone.conf /etc/apache2/sites-enabled
+#- name: create wsgi-keystone conf
+#  template: src=wsgi-keystone.conf dest=/etc/apache2/sites-available/wsgi-keystone.conf backup=yes
+
+#- name: change owner
+#  file: path=/etc/apache2/sites-available/wsgi-keystone.conf owner=root group=root mode=0644
+#- name: link wsgi-keystone conf
+#  file: src=/etc/apache2/sites-available/wsgi-keystone.conf dest=/etc/apache2/sites-enabled state=link force=yes 
 
 - name: delete sqlite database
   shell: rm /var/lib/keystone/keystone.db || echo sqllite database already removed

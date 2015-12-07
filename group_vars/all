@@ -1,10 +1,8 @@
-controller_host: 
-network_host: 
-compute_host:
-storage_host:
-odl_controller:
-network_int_host:
-compute_int_host:
+controller_host: 172.16.254.15 
+network_host: 172.16.254.15
+compute_host: 172.16.254.15
+network_int_host: 192.168.33.10
+compute_int_host: 192.168.33.10
 
 DEBUG: False
 VERBOSE: False

@@ -10,10 +10,10 @@
 - name: update packages once
   apt: update_cache=yes 
 
-- name: update hosts files to all hosts
-  template: src=hosts
-            dest=/etc/hosts
-            backup=yes
+#- name: update hosts files to all hosts
+#  template: src=hosts
+#            dest=/etc/hosts
+#            backup=yes
 
 - name: install common packages
   apt: name={{ item }} state=latest
