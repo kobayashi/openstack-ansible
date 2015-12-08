@@ -38,15 +38,15 @@
 #- name: manually restart neutron-server
 #  service: name=neutron-server state=restarted
 
-- name: place neutron_init.sh under /opt/
-  template: src=neutron_init.sh dest=/opt/neutron_init.sh mode=0744
+#- name: place neutron_init.sh under /opt/
+#  template: src=neutron_init.sh dest=/opt/neutron_init.sh mode=0744
+#
+#- name: init neutron
+#  shell: /opt/neutron_init.sh && touch neutron_init_complete || touch neutron_init_failed
+#  args:
+#    creates: neutron_init_complete
 
-- name: init neutron
-  shell: /opt/neutron_init.sh && touch neutron_init_complete || touch neutron_init_failed
-  args:
-    creates: neutron_init_complete
-
-- name: neutron-db-manage upgrade to Juno
+- name: neutron-db-manage upgrade to Liberty
   shell: neutron-db-manage --config-file=/etc/neutron/neutron.conf --config-file=/etc/neutron/plugins/ml2/ml2_conf.ini upgrade head
   notify:
     - restart neutron-server

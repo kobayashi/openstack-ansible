@@ -18,7 +18,7 @@ RABBIT_PASS: guest
 KEYSTONE_DBPASS: keystone
 DEMO_PASS: demo
 ADMIN_PASS: admin
-GLANCE_DBPASS: glance_db_secret
+GLANCE_DBPASS: glance
 GLANCE_PASS: glance
 NOVA_DBPASS: nova
 NOVA_PASS: nova
@@ -26,7 +26,7 @@ DASH_DBPASS: dash
 CINDER_DBPASS: cinder
 CINDER_PASS: cinder
 NEUTRON_DBPASS: neutron
-NEUTRON_PASS: netron
+NEUTRON_PASS: neutron
 NEUTRON_TYPE_DRIVERS: ['flat', 'gre', 'vxlan']
 NEUTRON_TENANT_NETWORK_TYPES: ['vxlan']
 #NEUTRON_MECHANISM_DRIVERS: ['opendaylight']
@@ -41,7 +41,7 @@ EXTERNAL_NETWORK_GATEWAY:
 FLOATING_IP_START:
 FLOATING_IP_END:
 
-build_in_image: http://cdn.download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
+build_in_image: http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
 build_in_image_name: cirros-0.3.4-x86_64-disk.img
 
 physical_device:

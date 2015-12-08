@@ -12,7 +12,7 @@
     - python-oslo.rootwrap
 
 - name: update nova conf
-  template: src=nova-controller.conf dest=/etc/neutron/nova.conf backup=yes
+  template: src=nova-controller.conf dest=/etc/nova/nova.conf backup=yes
   notify:
     - restart nova-api
     - restart nova-cert

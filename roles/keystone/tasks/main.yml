@@ -18,13 +18,13 @@
 - name: update apache2 conf
   template: src=apache2.conf dest=/etc/apache2/apache2.conf backup=yes
 
-#- name: create wsgi-keystone conf
-#  template: src=wsgi-keystone.conf dest=/etc/apache2/sites-available/wsgi-keystone.conf backup=yes
+- name: create wsgi-keystone conf
+  template: src=wsgi-keystone.conf dest=/etc/apache2/sites-available/wsgi-keystone.conf backup=yes
 
-#- name: change owner
-#  file: path=/etc/apache2/sites-available/wsgi-keystone.conf owner=root group=root mode=0644
-#- name: link wsgi-keystone conf
-#  file: src=/etc/apache2/sites-available/wsgi-keystone.conf dest=/etc/apache2/sites-enabled state=link force=yes 
+- name: change owner
+  file: path=/etc/apache2/sites-available/wsgi-keystone.conf owner=root group=root mode=0644
+- name: link wsgi-keystone conf
+  file: src=/etc/apache2/sites-available/wsgi-keystone.conf dest=/etc/apache2/sites-enabled state=link force=yes 
 
 - name: delete sqlite database
   shell: rm /var/lib/keystone/keystone.db || echo sqllite database already removed
@@ -45,9 +45,9 @@
   template: src=keystone_init dest=/opt/keystone_init mode=0744
 
 - name: run keystone_init
-  shell: /opt/keystone_init && touch keystone_init_complete || keystone_init_failed
-  args:
-    creates: keystone_init_complete 
+  shell: /opt/keystone_init #&& touch keystone_init_complete || keystone_init_failed
+#  args:
+#    creates: keystone_init_complete 
 
 - name: keystone source files
   template: src={{ item }} dest=/opt/{{ item }}
@@ -56,12 +56,15 @@
     - demo-openrc.sh
 
 - name: place service init script under /opt/
-  template: src=service_init dest=/opt/service_init mode=0744
+  template: src=service_init dest=/opt/service_init mode=0755
+
+- name: set mode
+  shell: chmod 655 /opt/admin-openrc.sh
 
 - name: set environment
-  shell: source /opt/admin-openrc.sh
+  shell: /opt/admin-openrc.sh
 
 - name: register services
-  shell: /opt/service_init && touch service_init_complete || service_init_failed
-  args:
-    creates: service_init_complete
+  shell: /opt/service_init #&& touch service_init_complete || service_init_failed
+  #args:
+    #creates: service_init_complete
